@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<!-- Bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur -->
+<!-- Programmed by Zafer Akçalı, MD-->
+<html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Convert Hapl-o-Mat to Arlequin</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.0.0/papaparse.min.js"></script>	
+</head>
+<body>
+<label for="myfile">Select a csv file:</label>
+<input type="file" id="csvfile" name="Csv File"">
+<button onclick="readFunction()">Read</button><br />
+<br>Group prefix: <input type="text" id="gpx" value="G" size="2" maxlength="2"><br>
+	CSV input / Arlequin Output <br />
+<textarea rows = "25" cols = "120" name = "Arl Text" id="arltext"></textarea> <br /> 
+<button onclick="convertFunction()">Convert</button> 	<button onclick="copyFunction()">Copy</button><br /><br />
+	
+<script>
+//prefix of arp format
+var prearp=`[Profile] 
+
+	Title="A sample of human HLA data with recessive alleles"
+
+	NbSamples=1
+	GenotypicData=1
+	DataType=STANDARD
+	RecessiveData=1
+	GameticPhase=0
+	RecessiveAllele="NULL"
+	LocusSeparator=WHITESPACE
+	MissingData="?"
+
+[Data]
+
+	[[Samples]]
+
+		SampleName="A test HLA sample"
+		SampleSize=`;
+
+var hlaA, hlaB, hlaC, hlaDR,hlaDQ;
+
+var csvtext="";
+var hlaArray=[];
+
+function readFunction() {
+
+	var file = document.getElementById('csvfile').files[0];
+	var reader = new FileReader();
+	reader.onload = (function(file) {
+	return function(e) {
+	csvtext = this.result;
+		document.getElementById('arltext').value=csvtext; 
+           }
+		})(file);
+		reader.readAsText(file);
+}
+
+function convertFunction() {
+	var size, nloci;
+	var locusArray1=[];
+	var locusArray2=[];
+	document.getElementById('arltext').value=""; 
+
+	haploLine=prearp; 
+	results = Papa.parse(csvtext, {
+	header: false,
+	skipEmptyLines: true
+});
+
+
+size = results.data.length-1;
+nloci = (results.data[0].length-1)/2; // number of loci, calculate from first line of csv file
+// console.log("number of loci: ",nloci);
+
+for (var i=1; i<results.data.length; i++) {
+	for (var j=0; j<nloci; j++) {
+			if (results.data[i][2*j+1] =="") 	locusArray1[j] = "?     ";			// if locus value is empty
+				else locusArray1[j] = results.data[0][2*j+1] +results.data[i][2*j+1]+"   ";  // locus1 header + locus1 value
+			if (results.data[i][2*j+2] =="")	locusArray2[j] = "?     ";			// if locus value is empty
+				else locusArray2[j] = results.data[0][2*j+2] +results.data[i][2*j+2]+"   ";  // locus2 header + locus2 value
+		}
+let haplo1="";
+let haplo2="";
+for (var j=0; j<nloci; j++) {
+	haplo1= haplo1+locusArray1[j];
+	haplo2= haplo2+locusArray2[j];
+}
+
+hlaArray[i-1] = haplo1+"\n"+ "         "+ haplo2;
+}
+const map = hlaArray.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
+haploLine= haploLine+size.toString()+"\n"+ "		SampleData={" + "\n";
+i=0;
+indent = "";
+for (const [key, value] of map.entries()) {
+	i++;
+	if (i<10) indent = "    ";
+	if (i>9 && i<100)  indent = "   ";
+	if (i>99 && i<1000)  indent = "  ";
+	if (i>1000 && i<10000)  indent = " ";
+	
+	haploLine= haploLine + document.getElementById('gpx').value+i.toString()+indent+ value +"  "+ key + "\n";
+//  console.log(key, value);
+}
+haploLine= haploLine+"}"+"\n";
+document.getElementById('arltext').value = haploLine;
+
+}
+
+function copyFunction() {
+	document.getElementById('arltext').select();
+	document.execCommand("copy");
+}
+
+
+</script>
+</body>
+</html>
