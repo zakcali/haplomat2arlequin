@@ -17,8 +17,8 @@ steps:
 
 	1- run the program convert2arlequin.html
 	2- click choose file and select populationData_a.dat.txt
-	3- click read and see the MAC formatted file in CSV input / Arlequin Output
-	4- click convert and see the arp formatted file in CSV input / Arlequin Output
+	3- click read and see the MAC formatted file in "CSV input / Arlequin Output" text area
+	4- click convert and see the arp formatted file in "CSV input / Arlequin Output" text area
 	5- click copy
 	6- paste to your favorite text editor (for example notepad++)
 	7- save as from your favorite text editor, give a name with extension arp
