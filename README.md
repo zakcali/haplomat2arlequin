@@ -20,7 +20,7 @@ convert2arlequin.html javascript program uses paparse.min.js to read csv files, 
 
 steps:
 
-	1- run the program convert2arlequin.html
+	1- click to convert2arlequin.html to run in a browser 
 	2- click choose file and select populationData_a.dat.txt
 	3- click read and see the MAC formatted file in "CSV input / Arlequin Output" text area
 	4- click convert and see the arp formatted file in "CSV input / Arlequin Output" text area
