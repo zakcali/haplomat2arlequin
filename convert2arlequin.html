@@ -105,7 +105,7 @@ for (const [key, value] of map.entries()) {
 	if (i<10) indent = "    ";
 	if (i>9 && i<100)  indent = "   ";
 	if (i>99 && i<1000)  indent = "  ";
-	if (i>1000 && i<10000)  indent = " ";
+	if (i>999 && i<10000)  indent = " ";
 	
 	haploLine= haploLine + document.getElementById('gpx').value+i.toString()+indent+ value +"  "+ key + "\n";
 //  console.log(key, value);
