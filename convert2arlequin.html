@@ -19,7 +19,10 @@ CSV input / Arlequin Output <br />
 <button onclick="convertFunction()">Convert</button> 	<button onclick="copyFunction()">Copy</button><br /><br />
 	
 <script>
-//prefix of arp format
+// global scope
+var csvtext="";
+var asterix="";
+//prefix of arp format, multiline text
 var prearp=`[Profile] 
 
 	Title="A sample of human HLA data with recessive alleles"
@@ -40,10 +43,7 @@ var prearp=`[Profile]
 		SampleName="A test HLA sample"
 		SampleSize=`;
 
-var csvtext="";
-var asterix="";
-
-function addAsterix() {
+		function addAsterix() {
 var checkBox = document.getElementById("asterixbox");
 if (checkBox.checked == true) asterix = "*"; 
 		else asterix="";
@@ -91,13 +91,17 @@ for (var j=0; j<nloci; j++) {
 	haplo1= haplo1+locusArray1[j];
 	haplo2= haplo2+locusArray2[j];
 }
-
+// hlaArray contains every induvidual's HLA data
 hlaArray[i-1] = haplo1+"\n"+ "         "+ haplo2;
 }
-const map = hlaArray.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
+//map contains frequencies and unique HLA data 
+const map = hlaArray.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map()); 
+// midde-fix op arp file, prints SampleSize=
 haploLine= haploLine+size.toString()+"\n"+ "		SampleData={" + "\n";
 i=0;
 indent = "";
+
+//iterate individual HLA data 
 for (const [key, value] of map.entries()) {
 	i++;
 	if (i<10) indent = "    ";
