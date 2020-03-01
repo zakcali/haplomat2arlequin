@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!-- Bu yazılım Dr. Zafer Akçalı tarafından oluşturulmuştur -->
 <!-- Programmed by Zafer Akçalı, MD-->
@@ -10,11 +9,13 @@
 </head>
 <body>
 <label for="myfile">Select a csv file:</label>
-<input type="file" id="csvfile" name="Csv File"">
-<button onclick="readFunction()">Read</button><br />
-<br>Group prefix: <input type="text" id="gpx" value="G" size="2" maxlength="2"><br>
-	CSV input / Arlequin Output <br />
-<textarea rows = "25" cols = "120" name = "Arl Text" id="arltext"></textarea> <br /> 
+<input type="file" id="csvfile" name="Csv File">
+<button onclick="readFunction()">Read</button> <br/> <br/>
+Group prefix: <input type="text" id="gpx" value="G" size="2" maxlength="2"> &nbsp;&nbsp;&nbsp;
+(*) between locus name and locus value <input type="checkbox" id="asterixbox" onclick="addAsterix()"><br/> <br/>
+
+CSV input / Arlequin Output <br />
+<textarea rows = "30" cols = "120" name = "Arl Text" id="arltext"></textarea> <br /> 
 <button onclick="convertFunction()">Convert</button> 	<button onclick="copyFunction()">Copy</button><br /><br />
 	
 <script>
@@ -43,6 +44,13 @@ var hlaA, hlaB, hlaC, hlaDR,hlaDQ;
 
 var csvtext="";
 var hlaArray=[];
+var asterix="";
+
+function addAsterix() {
+var checkBox = document.getElementById("asterixbox");
+if (checkBox.checked == true) asterix = "*"; 
+		else asterix="";
+}
 
 function readFunction() {
 
@@ -76,10 +84,10 @@ nloci = (results.data[0].length-1)/2; // number of loci, calculate from first li
 
 for (var i=1; i<results.data.length; i++) {
 	for (var j=0; j<nloci; j++) {
-			if (results.data[i][2*j+1] =="") 	locusArray1[j] = "?     ";			// if locus value is empty
-				else locusArray1[j] = results.data[0][2*j+1] +results.data[i][2*j+1]+"   ";  // locus1 header + locus1 value
+			if (results.data[i][2*j+1] =="") 	locusArray1[j] = "?     ";	// if locus value is empty
+				else locusArray1[j] = results.data[0][2*j+1] + asterix + results.data[i][2*j+1]+"   ";  // locus1 header + locus1 value
 			if (results.data[i][2*j+2] =="")	locusArray2[j] = "?     ";			// if locus value is empty
-				else locusArray2[j] = results.data[0][2*j+2] +results.data[i][2*j+2]+"   ";  // locus2 header + locus2 value
+				else locusArray2[j] = results.data[0][2*j+2] + asterix + results.data[i][2*j+2]+"   ";  // locus2 header + locus2 value
 		}
 let haplo1="";
 let haplo2="";
