@@ -57,8 +57,10 @@ steps
 What:
 You entered your data in excel, a line for every person. Arlequins wants one item for every HLA data. If more than one person shares same HLA data, you must supply:
 
-	1- An arbitrary name for HLA data
-	2- Frequenct of HLA data (how many person have that HLA data
+	1- An arbitrary (group) name for HLA data
+	2- Frequency of HLA data (how many person have that HLA data
 	3- HLA data itself
-	
-	first an arbitrary name for your HLA data, 
+If a HLA data is unique in the population, frequency must 1 
+
+you can choose a prefix for group data by entering an arbitrary letter in Group prefix: before converting with convert2arlequin.html
+you look at last line-1 of Arlequin output  and understnad that how many HLA groups is present in your populatin.
