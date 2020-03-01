@@ -1,4 +1,4 @@
-# haplomat2harlequin
+# haplomat2arlequin
 convert HLA data format from Hapl-o-Mat to Arlequin
 
 one can analyse HLA data with various software
