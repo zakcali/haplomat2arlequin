@@ -45,3 +45,5 @@ you can change the options below, such as 	RecessiveData before saving data:
 
 		SampleName="A test HLA sample"
     
+
+You can also use the haplomat2harlequin to read HLA data entered in Excel files
