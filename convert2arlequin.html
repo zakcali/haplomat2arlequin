@@ -40,10 +40,7 @@ var prearp=`[Profile]
 		SampleName="A test HLA sample"
 		SampleSize=`;
 
-var hlaA, hlaB, hlaC, hlaDR,hlaDQ;
-
 var csvtext="";
-var hlaArray=[];
 var asterix="";
 
 function addAsterix() {
@@ -54,11 +51,11 @@ if (checkBox.checked == true) asterix = "*";
 
 function readFunction() {
 
-	var file = document.getElementById('csvfile').files[0];
+	var file = document.getElementById('csvfile').files[0]; //get filename
 	var reader = new FileReader();
 	reader.onload = (function(file) {
 	return function(e) {
-	csvtext = this.result;
+	csvtext = this.result;	//read from csv file
 		document.getElementById('arltext').value=csvtext; 
            }
 		})(file);
@@ -69,18 +66,17 @@ function convertFunction() {
 	var size, nloci;
 	var locusArray1=[];
 	var locusArray2=[];
+	var hlaArray=[];
 	document.getElementById('arltext').value=""; 
-
 	haploLine=prearp; 
-	results = Papa.parse(csvtext, {
+
+	results = Papa.parse(csvtext, {	//parse from csv text
 	header: false,
 	skipEmptyLines: true
 });
 
-
 size = results.data.length-1;
 nloci = (results.data[0].length-1)/2; // number of loci, calculate from first line of csv file
-// console.log("number of loci: ",nloci);
 
 for (var i=1; i<results.data.length; i++) {
 	for (var j=0; j<nloci; j++) {
@@ -114,15 +110,11 @@ for (const [key, value] of map.entries()) {
 }
 haploLine= haploLine+"}"+"\n";
 document.getElementById('arltext').value = haploLine;
-
 }
-
 function copyFunction() {
 	document.getElementById('arltext').select();
 	document.execCommand("copy");
 }
-
-
 </script>
 </body>
 </html>
