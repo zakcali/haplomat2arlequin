@@ -51,11 +51,11 @@ you can change the options below, such as 	RecessiveData before saving data:
 		SampleName="A test HLA sample"
     
 
-You can also use the haplomat2harlequin to read HLA data entered in Excel files
+You can also use the haplomat2arlequin to read HLA data entered in Excel files
 
 steps
 
-	1- Your excel documents first row must contain an id column plus HLA domains twice
+	1- Your excel documents first row must contain an ids column plus HLA domains twice
 	2- Export your data as a csv file (it may contain commas instead of tabs, thanks to papaparse)
 	3- read csv file from convert2arlequin.html, just like Hapl-o-Mat in MAC format
 
