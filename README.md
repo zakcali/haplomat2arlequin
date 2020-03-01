@@ -10,7 +10,7 @@ You can find more information about formats from page 11+ of https://github.com/
 MAC (Multiple Allele Codes) is one of those formats, and you can export from Excel if you keep your archive in Excel fomat
 
 
-if you entered your data into Hapl-o-Mat in MAC format, you can export your data to Arlequin format easly
+if you entered your data into Hapl-o-Mat in MAC format, you can convert your data to Arlequin format by using haplomat2arlequin
 
 download raw data containing 100 samples of HLA data from https://github.com/DKMS/Hapl-o-Mat/blob/master/examplePopulations/populationData_a.dat
 
