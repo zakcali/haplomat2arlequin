@@ -5,6 +5,11 @@ one can analyse HLA data with various software
 
 Hapl-o-Mat can read various formats : https://github.com/DKMS/Hapl-o-Mat/tree/master/examplePopulations
 
+You can find more information starting from page 11 of https://github.com/DKMS/Hapl-o-Mat/blob/master/detailedGettingStartedWindows.pdf
+
+MAC (Multiple Allele Codes) is one of those formats, and you can export from Excel if you keep your archive in Excel fomat
+
+
 if you entered your data into Hapl-o-Mat in MAC format, you can export your data to Arlequin format easly
 
 download raw data containing 100 samples of HLA data from https://github.com/DKMS/Hapl-o-Mat/blob/master/examplePopulations/populationData_a.dat
