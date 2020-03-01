@@ -47,3 +47,18 @@ you can change the options below, such as 	RecessiveData before saving data:
     
 
 You can also use the haplomat2harlequin to read HLA data entered in Excel files
+
+steps
+
+	1- Your excel documents first row must contain an id column plus HLA domains twice
+	2- Export your data as a csv file (it may contain commas instead of tabs, thanks to papaparse)
+	3- read csv file from convert2arlequin.html, just like Hapl-o-Mat in MAC format
+
+What:
+You entered your data in excel, a line for every person. Arlequins wants one item for every HLA data. If more than one person shares same HLA data, you must supply:
+
+	1- An arbitrary name for HLA data
+	2- Frequenct of HLA data (how many person have that HLA data
+	3- HLA data itself
+	
+	first an arbitrary name for your HLA data, 
