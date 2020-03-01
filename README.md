@@ -69,4 +69,4 @@ If a HLA data is unique in the population, frequency must 1
 
 you can choose a prefix for group data by entering an arbitrary letter in Group prefix: before converting with convert2arlequin.html
 
-If you look at last line-1 of Arlequin output  then you understand how many HLA groups is present in your populatin.
+If you look at last line-1 of Arlequin output  then you understand how many HLA groups is present in your population.
