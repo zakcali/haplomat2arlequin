@@ -16,7 +16,7 @@ download raw data containing 100 samples of HLA data from https://github.com/DKM
 
 save as populationData_a.dat.txt
 
-convert2arlequin.html javascript program uses paparse.min.js to read csv files, extracts locus names from the first line of csv / or table delimited file
+convert2arlequin.html javascript program uses paparse.min.js to read csv files, extracts locus names from the first line of comma seperated or table delimited file
 
 steps:
 
