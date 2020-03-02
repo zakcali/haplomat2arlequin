@@ -1,5 +1,6 @@
 # haplomat2arlequin
-convert HLA data from Hapl-o-Mat to Arlequin
+converts HLA data from Hapl-o-Mat to Arlequin
+This is not a server server side program. Written in pure JavaScript, so you must save html file to your computer, start it in a browser, by double clicking the html file. Your csv or tab-delimited file must be in your disk, and you must load it by using haplomat2arlequin.html
 
 one can analyse HLA data with various software
 
