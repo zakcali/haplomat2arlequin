@@ -72,7 +72,7 @@ var locusArray1=[];
 var locusArray2=[];
 var hlaArray=[];
 haploLine=prearp; 
-document.getElementById('arltext').value=""; // clear textbox
+document.getElementById('arltext').value=""; // clear textarea
 	results = Papa.parse(csvtext, {	//parse from csv text
 	header: false,
 	skipEmptyLines: true
@@ -97,23 +97,27 @@ for (var j=0; j<nloci; j++) {
 	haplo2= haplo2+locusArray2[j]; // cretae second line
 	}
 // hlaArray contains every induvidual's HLA data
-hlaArray[i-1] = haplo1+"\n"+ "         "+ haplo2; // create individual's locuses and values, i=0 there is not a header row
+hlaArray[i-1] = haplo1+"\n"+ "            "+ haplo2; // create individual's locuses and values, i=0 there is not a header row
 }
 //map will contain frequencies and unique HLA data 
 const map = hlaArray.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map()); 
 // midde-fix of arp file, prints SampleSize=
 haploLine= haploLine+size.toString()+"\n"+ "		SampleData={" + "\n";
 i=0;
-indent = "";
+indent = " "; // at least one spece between group number and frequency, for each line of SampleData
 
 //iterate individual HLA data 
-for (const [key, value] of map.entries()) {
+// same amount of spece between group number and frequency, for each line of SampleData
+for (const [key, value] of map.entries()) { 
 	i++;
-	if (i<10) indent = "    ";
-	if (i>9 && i<100)  indent = "   ";
-	if (i>99 && i<1000)  indent = "  ";
-	if (i>999 && i<10000)  indent = " ";
-	
+			if (i<10)  indent = "       ";
+	else	if (i<100)  indent = "      ";
+	else	if (i<1000)  indent = "     ";
+	else	if (i<10000)  indent = "    ";
+	else	if (i<100000)  indent = "   ";
+	else	if (i<1000000)  indent = "  ";
+	else	if (i<10000000)  indent = " ";
+//Group prefix + group number + enough space -> frequency 	
 	haploLine= haploLine + document.getElementById('gpx').value+i.toString()+indent+ value +"  "+ key + "\n";
 //  console.log(key, value);
 }
