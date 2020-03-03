@@ -93,8 +93,8 @@ for (var i=1; i<results.data.length; i++) { // i=1 to skip header row
 let haplo1="";
 let haplo2="";
 for (var j=0; j<nloci; j++) {
-	haplo1= haplo1+locusArray1[j]; // cretae first line
-	haplo2= haplo2+locusArray2[j]; // cretae second line
+	haplo1= haplo1+locusArray1[j]; // create first line
+	haplo2= haplo2+locusArray2[j]; // create second line
 	}
 // hlaArray contains every induvidual's HLA data
 hlaArray[i-1] = haplo1+"\n"+ "            "+ haplo2; // create individual's locuses and values, i=0 there is not a header row
@@ -104,10 +104,10 @@ const map = hlaArray.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new M
 // midde-fix of arp file, prints SampleSize=
 haploLine= haploLine+size.toString()+"\n"+ "		SampleData={" + "\n";
 i=0;
-indent = " "; // at least one spece between group number and frequency, for each line of SampleData
+indent = " "; // at least one spece between HLAtype descriptor  and frequency, for each line of SampleData
 
 //iterate individual HLA data 
-// same amount of spece between group number and frequency, for each line of SampleData
+// same amount of spece between HLAtype descriptor and frequency, for each line of SampleData
 for (const [key, value] of map.entries()) { 
 	i++;
 		if (i<10)  indent = "       ";
@@ -116,12 +116,12 @@ for (const [key, value] of map.entries()) {
 	else	if (i<10000)  indent = "    ";
 	else	if (i<100000)  indent = "   ";
 	else	if (i<1000000)  indent = "  ";
-	else	if (i<10000000)  indent = " ";
+	else	if (i<10000000)  indent = " "; // not necessary 
 //Group prefix + group number + enough space -> frequency 	
 	haploLine= haploLine + document.getElementById('gpx').value+i.toString()+indent+ value +"  "+ key + "\n";
 //  console.log(key, value);
 }
-haploLine= haploLine+"}"+"\n";
+haploLine= haploLine+"}"+"\n"; // postfix of arp file
 document.getElementById('arltext').value = haploLine;
 }
 
