@@ -11,7 +11,7 @@
 <label for="myfile">Select a csv file:</label>
 <input type="file" id="csvfile" name="Csv File">
 <button onclick="readFunction()">Read</button> <br/> <br/>
-Group prefix: <input type="text" id="gpx" value="G" size="2" maxlength="2"> &nbsp;&nbsp;&nbsp;
+Genotype prefix: <input type="text" id="gpx" value="G" size="2" maxlength="2"> &nbsp;&nbsp;&nbsp;
 (*) between locus name and locus value <input type="checkbox" id="asterixbox" onclick="addAsterix()"><br/> <br/>
 
 CSV input / Arlequin Output <br />
@@ -43,7 +43,9 @@ var prearp=`[Profile]
 
 		SampleName="A test HLA sample"
 		SampleSize=`;
-// end of prefix 
+
+//postfix of arp format, multiline text
+var postarp = "}"+"\n";
 function addAsterix() {
 var checkBox = document.getElementById("asterixbox");
 if (checkBox.checked == true) { 
@@ -93,21 +95,21 @@ for (var i=1; i<results.data.length; i++) { // i=1 to skip header row
 let haplo1="";
 let haplo2="";
 for (var j=0; j<nloci; j++) {
-	haplo1= haplo1+locusArray1[j]; // create first line
-	haplo2= haplo2+locusArray2[j]; // create second line
+	haplo1= haplo1+locusArray1[j]; // create first line (first haplotype)
+	haplo2= haplo2+locusArray2[j]; // create second line (second haplotype)
 	}
-// hlaArray contains every induvidual's HLA data
-hlaArray[i-1] = haplo1+"\n"+ "            "+ haplo2; // create individual's locuses and values, i=0 there is not a header row
+// hlaArray contains every induvidual's genotype
+hlaArray[i-1] = haplo1+"\n"+ "            "+ haplo2; // create individual's genotypes, i=0 because there is not a header row
 }
-//map will contain frequencies and unique HLA data 
+//map will contain frequencies of Genotypes (Haplo1 + Haplo2) 
 const map = hlaArray.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map()); 
 // midde-fix of arp file, prints SampleSize=
 haploLine= haploLine+size.toString()+"\n"+ "		SampleData={" + "\n";
 i=0;
-indent = " "; // at least one spece between HLAtype descriptor  and frequency, for each line of SampleData
+indent = " "; // at least one spece between Genotype descriptor  and frequency, for each line of SampleData
 
-//iterate individual HLA data 
-// same amount of spece between HLAtype descriptor and frequency, for each line of SampleData
+//iterate genotypes 
+// same amount of spece between Genotype descriptor and frequency, for each line of SampleData
 for (const [key, value] of map.entries()) { 
 	i++;
 		if (i<10)  indent = "       ";
@@ -117,11 +119,11 @@ for (const [key, value] of map.entries()) {
 	else	if (i<100000)  indent = "   ";
 	else	if (i<1000000)  indent = "  ";
 	else	if (i<10000000)  indent = " "; // not necessary 
-//Group prefix + group number + enough space -> frequency 	
+//Genotype prefix + genotype number + enough space -> frequency 	
 	haploLine= haploLine + document.getElementById('gpx').value+i.toString()+indent+ value +"  "+ key + "\n";
 //  console.log(key, value);
 }
-haploLine= haploLine+"}"+"\n"; // postfix of arp file
+haploLine= haploLine + postarp; // postfix of arp file
 document.getElementById('arltext').value = haploLine;
 }
 
