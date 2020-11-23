@@ -3,7 +3,7 @@ converts HLA data from Hapl-o-Mat to Arlequin.
 
 It is not necessary to be on a server, because written in pure JavaScript. You can save html file to your computer, start it in a browser, by double clicking the html file. Your csv or tab-delimited files can be read from your hard disk.
 
-Most people keep his/her HLA data on an Excel file, and examine them with varios software. Hap-o-mat and Arlequin are just two of them.
+Most people keep his/her HLA data on an Excel file, and examine them with various software. Hap-o-mat and Arlequin are just two of them.
 
 Hapl-o-Mat can read various formats : https://github.com/DKMS/Hapl-o-Mat/tree/master/examplePopulations
 
