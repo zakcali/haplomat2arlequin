@@ -30,6 +30,7 @@ steps:
 	6- paste to your favorite text editor (for example notepad++)
 	7- save as from your favorite text editor, give a name with extension arp
 	8- open arp file as a project from Arlequin
+	9- instead of (5-8) you can use save button if your browser compatible
 
 you can change the options below, such as 	RecessiveData before saving data:
 
