@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Convert Hapl-o-Mat to Arlequin</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.0.0/papaparse.min.js"></script>	
+<script src="https://cdn.jsdelivr.net/g/filesaver.js"></script> 
 </head>
 <body>
 <label for="myfile">Select a csv file:</label>
@@ -16,7 +17,8 @@ Genotype prefix: <input type="text" id="gpx" value="G" size="2" maxlength="2"> &
 
 CSV input / Arlequin Output <br />
 <textarea rows = "30" cols = "120" name = "Arl Text" id="arltext"></textarea> <br /> 
-<button onclick="convertFunction()">Convert</button> 	<button onclick="copyFunction()">Copy</button><br /><br />
+<button onclick="convertFunction()">Convert</button> 	<button onclick="copyFunction()">Copy</button>
+<button onclick="saveFunction()">Save .arp</button><br /><br />
 	
 <script>
 // global scope
@@ -130,6 +132,11 @@ document.getElementById('arltext').value = haploLine;
 function copyFunction() {
 	document.getElementById('arltext').select();
 	document.execCommand("copy");
+}
+function saveFunction() {
+var blob = new Blob([document.getElementById('arltext').value],
+                { type: "text/plain;charset=utf-8" });
+saveAs(blob, "output.arp");
 }
 </script>
 </body>
